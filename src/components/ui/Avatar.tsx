@@ -9,36 +9,36 @@ interface AvatarProps {
 }
 
 const sizeClasses = {
-  sm: 'w-10 h-10 text-sm',
-  md: 'w-16 h-16 text-xl',
-  lg: 'w-24 h-24 text-3xl',
-  xl: 'w-32 h-32 md:w-40 md:h-40 text-5xl',
+  sm: 'w-8 h-8 text-xs',
+  md: 'w-14 h-14 text-lg',
+  lg: 'w-20 h-20 text-2xl',
+  xl: 'w-28 h-28 md:w-36 md:h-36 text-4xl',
 };
 
 export const Avatar: React.FC<AvatarProps> = ({ initials, src, size = 'md', className }) => {
   return (
     <div className={cn("relative group flex-shrink-0 rounded-full", className)}>
       {/* Outer Glow Ring */}
-      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-red-500 to-red-900 opacity-0 group-hover:opacity-40 blur-xl transition-opacity duration-500" />
+      <div className="absolute inset-[-4px] rounded-full bg-gradient-to-br from-red-600 to-red-950 opacity-0 group-hover:opacity-60 blur-xl transition-opacity duration-500" />
       
       {/* Container */}
       <div className={cn(
-        "relative flex items-center justify-center rounded-full bg-gradient-to-br from-white/10 to-white/5 border border-white/10 backdrop-blur-md transition-transform duration-500 group-hover:scale-105 overflow-hidden shadow-2xl",
+        "relative flex items-center justify-center rounded-full bg-gradient-to-br from-red-900/40 to-black border border-red-600/30 backdrop-blur-md transition-all duration-500 group-hover:scale-105 group-hover:border-red-600/60 overflow-hidden shadow-2xl",
         sizeClasses[size]
       )}>
         {src ? (
           <img 
             src={src} 
             alt="Avatar" 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             referrerPolicy="no-referrer"
           />
         ) : (
           <>
             {/* Inner subtle glow */}
-            <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-transparent opacity-50" />
+            <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 to-transparent opacity-50" />
             
-            <span className="relative z-10 font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-400 tracking-wider">
+            <span className="relative z-10 font-display font-black text-white drop-shadow-md tracking-wider">
               {initials}
             </span>
           </>

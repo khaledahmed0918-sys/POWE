@@ -3,45 +3,72 @@ import { motion } from 'motion/react';
 
 export const Hero: React.FC = () => {
   return (
-    <section className="relative min-h-[80vh] flex flex-col items-center justify-center text-center px-4 pt-32 pb-10 overflow-hidden">
-      {/* Dynamic Background Glow */}
-      <motion.div 
-        animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-red-600/20 rounded-full blur-[150px] pointer-events-none" 
-      />
+    <section className="relative min-h-[85vh] flex flex-col items-center justify-center text-center px-4 pt-24 pb-10 overflow-hidden">
+      {/* Vibrant Background Glows */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
+        <div className="absolute top-[-10%] left-[10%] w-[40%] h-[40%] bg-red-600/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[10%] right-[10%] w-[30%] h-[30%] bg-red-900/10 rounded-full blur-[100px]" />
+      </div>
       
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="relative z-10 flex flex-col items-center w-full max-w-6xl mx-auto"
-      >
-        {/* Breathing Logo */}
+      <div className="relative z-10 flex flex-col items-center w-full max-w-5xl mx-auto">
+        {/* Logo with Glow */}
         <motion.div 
-          animate={{ scale: [1, 1.05, 1] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="mb-8"
+          initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ 
+            duration: 1.2, 
+            ease: [0.34, 1.56, 0.64, 1],
+            delay: 0.1
+          }}
+          className="mb-10 relative group"
         >
+          <div className="absolute inset-0 bg-red-600/20 blur-3xl rounded-full group-hover:bg-red-600/40 transition-all duration-700 animate-pulse" />
           <img 
             src="https://i.postimg.cc/Wpddwqtx/IMG-9085.jpg" 
             alt="POWR Logo" 
-            className="w-48 md:w-64 h-auto object-contain"
+            className="w-32 md:w-48 h-auto object-contain relative z-10 drop-shadow-[0_0_30px_rgba(220,38,38,0.4)]"
             referrerPolicy="no-referrer"
           />
         </motion.div>
 
-        <h1 className="text-6xl md:text-8xl lg:text-[9rem] font-black tracking-tighter mb-8 font-display flex flex-col justify-center items-center gap-y-2 py-6">
-          <span className="inline-block bg-clip-text text-transparent bg-gradient-to-br from-white via-gray-200 to-gray-600 leading-normal pb-2">
-            WE ARE
-          </span>
-          <span className="inline-block text-red-600 text-glow leading-normal pb-4" dir="ltr">#POWR</span>
-        </h1>
+        <motion.h1 
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-4 font-display flex flex-col items-center gap-y-1"
+        >
+          <span className="text-white">WE ARE</span>
+          <motion.span 
+            initial={{ scale: 0.9 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+            className="text-red-600 text-glow" 
+            dir="ltr"
+          >
+            #POWR
+          </motion.span>
+        </motion.h1>
         
-        <p className="text-lg md:text-2xl text-gray-400 max-w-3xl mx-auto font-medium leading-relaxed tracking-wide">
-          كل ما تحتاج معرفته عن مؤسسي وصناع محتوى وطاقم إدارة كلان باور
-        </p>
-      </motion.div>
+        <motion.p 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.8 }}
+          className="text-base md:text-xl text-red-100/60 max-w-xl mx-auto font-bold leading-relaxed tracking-wide"
+        >
+          المنظمة الرائدة في صناعة المحتوى والرياضات الإلكترونية
+        </motion.p>
+        
+        {/* Scroll Indicator */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5, duration: 1, repeat: Infinity, repeatType: "reverse" }}
+          className="absolute bottom-[-100px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        >
+          <span className="text-red-500/40 text-[10px] uppercase tracking-[0.3em] font-bold">Scroll</span>
+          <div className="w-px h-12 bg-gradient-to-b from-red-600/60 to-transparent" />
+        </motion.div>
+      </div>
     </section>
   );
 };

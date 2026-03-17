@@ -16,27 +16,17 @@ export const GlassCard: React.FC<GlassCardProps> = ({
 }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={cn(
-        "group relative overflow-hidden rounded-3xl glass-panel",
-        hoverEffect && "transition-all duration-500 hover:bg-white/[0.03] hover:border-white/10 hover:-translate-y-2",
+        "group relative overflow-hidden rounded-3xl glass-panel border border-red-600/20 will-change-[transform,opacity]",
+        hoverEffect && "transition-all duration-300 hover:bg-red-600/[0.03] hover:border-red-600/40 hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(220,38,38,0.1)]",
         className
       )}
       {...props}
     >
-      {/* Subtle top highlight */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-50" />
-      
-      {/* Hover glow effect */}
-      {hoverEffect && (
-        <div className="absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-b from-red-500/10 to-transparent rounded-3xl" />
-        </div>
-      )}
-      
       <div className="relative z-10 h-full">
         {children}
       </div>

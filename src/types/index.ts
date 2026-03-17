@@ -1,4 +1,4 @@
-export type SocialPlatform = 'instagram' | 'twitter' | 'kick' | 'youtube' | 'snapchat' | 'twitch' | 'tiktok' | 'discord';
+export type SocialPlatform = 'instagram' | 'twitter' | 'kick' | 'youtube' | 'snapchat' | 'twitch' | 'tiktok' | 'discord' | 'email' | 'x-community';
 
 export interface SocialLink {
   platform: SocialPlatform;
@@ -27,5 +27,18 @@ export interface ClanDetails {
   description: string;
   logoInitials: string;
   stats: Stat[];
+}
+
+export interface VideoData {
+  channelId: string;
+  channelName: string;
+  channelAvatar: string;
+  videoId: string;
+  title: string;
+  url: string;
+  thumbnail: string;
+  views: number;
+  likes: number;
+  published: string;
 }
 

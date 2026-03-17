@@ -7,7 +7,9 @@ import {
   FaSnapchat, 
   FaTwitch, 
   FaTiktok,
-  FaDiscord
+  FaDiscord,
+  FaEnvelope,
+  FaUsers
 } from 'react-icons/fa';
 import { SiKick } from 'react-icons/si';
 import { cn } from '../../utils/cn';
@@ -19,14 +21,16 @@ interface SocialButtonProps {
 }
 
 const iconMap = {
-  instagram: { icon: FaInstagram, color: 'text-pink-500', bg: 'bg-pink-500/10', border: 'border-pink-500/20', hoverBg: 'group-hover:bg-pink-500/20', hoverBorder: 'group-hover:border-pink-500/50', glow: 'group-hover:shadow-[0_0_15px_rgba(236,72,153,0.5)]' },
-  twitter: { icon: FaTwitter, color: 'text-sky-400', bg: 'bg-sky-400/10', border: 'border-sky-400/20', hoverBg: 'group-hover:bg-sky-400/20', hoverBorder: 'group-hover:border-sky-400/50', glow: 'group-hover:shadow-[0_0_15px_rgba(56,189,248,0.5)]' },
-  youtube: { icon: FaYoutube, color: 'text-red-500', bg: 'bg-red-500/10', border: 'border-red-500/20', hoverBg: 'group-hover:bg-red-500/20', hoverBorder: 'group-hover:border-red-500/50', glow: 'group-hover:shadow-[0_0_15px_rgba(239,68,68,0.5)]' },
-  snapchat: { icon: FaSnapchat, color: 'text-yellow-400', bg: 'bg-yellow-400/10', border: 'border-yellow-400/20', hoverBg: 'group-hover:bg-yellow-400/20', hoverBorder: 'group-hover:border-yellow-400/50', glow: 'group-hover:shadow-[0_0_15px_rgba(250,204,21,0.5)]' },
-  twitch: { icon: FaTwitch, color: 'text-purple-500', bg: 'bg-purple-500/10', border: 'border-purple-500/20', hoverBg: 'group-hover:bg-purple-500/20', hoverBorder: 'group-hover:border-purple-500/50', glow: 'group-hover:shadow-[0_0_15px_rgba(168,85,247,0.5)]' },
-  tiktok: { icon: FaTiktok, color: 'text-white', bg: 'bg-white/10', border: 'border-white/20', hoverBg: 'group-hover:bg-white/20', hoverBorder: 'group-hover:border-white/50', glow: 'group-hover:shadow-[0_0_15px_rgba(255,255,255,0.5)]' },
-  kick: { icon: SiKick, color: 'text-green-400', bg: 'bg-green-400/10', border: 'border-green-400/20', hoverBg: 'group-hover:bg-green-400/20', hoverBorder: 'group-hover:border-green-400/50', glow: 'group-hover:shadow-[0_0_15px_rgba(74,222,128,0.5)]' },
-  discord: { icon: FaDiscord, color: 'text-[#5865F2]', bg: 'bg-[#5865F2]/10', border: 'border-[#5865F2]/20', hoverBg: 'group-hover:bg-[#5865F2]/20', hoverBorder: 'group-hover:border-[#5865F2]/50', glow: 'group-hover:shadow-[0_0_15px_rgba(88,101,242,0.5)]' },
+  instagram: { icon: FaInstagram, color: 'text-white', bg: 'bg-red-600/10', border: 'border-red-600/20', hoverBg: 'group-hover:bg-red-600/30', hoverBorder: 'group-hover:border-red-600/60', glow: 'group-hover:shadow-[0_0_15px_rgba(220,38,38,0.4)]' },
+  twitter: { icon: FaTwitter, color: 'text-white', bg: 'bg-red-600/10', border: 'border-red-600/20', hoverBg: 'group-hover:bg-red-600/30', hoverBorder: 'group-hover:border-red-600/60', glow: 'group-hover:shadow-[0_0_15px_rgba(220,38,38,0.4)]' },
+  youtube: { icon: FaYoutube, color: 'text-white', bg: 'bg-red-600/10', border: 'border-red-600/20', hoverBg: 'group-hover:bg-red-600/30', hoverBorder: 'group-hover:border-red-600/60', glow: 'group-hover:shadow-[0_0_15px_rgba(220,38,38,0.4)]' },
+  snapchat: { icon: FaSnapchat, color: 'text-white', bg: 'bg-red-600/10', border: 'border-red-600/20', hoverBg: 'group-hover:bg-red-600/30', hoverBorder: 'group-hover:border-red-600/60', glow: 'group-hover:shadow-[0_0_15px_rgba(220,38,38,0.4)]' },
+  twitch: { icon: FaTwitch, color: 'text-white', bg: 'bg-red-600/10', border: 'border-red-600/20', hoverBg: 'group-hover:bg-red-600/30', hoverBorder: 'group-hover:border-red-600/60', glow: 'group-hover:shadow-[0_0_15px_rgba(220,38,38,0.4)]' },
+  tiktok: { icon: FaTiktok, color: 'text-white', bg: 'bg-red-600/10', border: 'border-red-600/20', hoverBg: 'group-hover:bg-red-600/30', hoverBorder: 'group-hover:border-red-600/60', glow: 'group-hover:shadow-[0_0_15px_rgba(220,38,38,0.4)]' },
+  kick: { icon: SiKick, color: 'text-white', bg: 'bg-red-600/10', border: 'border-red-600/20', hoverBg: 'group-hover:bg-red-600/30', hoverBorder: 'group-hover:border-red-600/60', glow: 'group-hover:shadow-[0_0_15px_rgba(220,38,38,0.4)]' },
+  discord: { icon: FaDiscord, color: 'text-white', bg: 'bg-[#5865F2]/10', border: 'border-[#5865F2]/20', hoverBg: 'group-hover:bg-[#5865F2]/30', hoverBorder: 'group-hover:border-[#5865F2]/60', glow: 'group-hover:shadow-[0_0_15px_rgba(88,101,242,0.4)]' },
+  email: { icon: FaEnvelope, color: 'text-white', bg: 'bg-red-600/10', border: 'border-red-600/20', hoverBg: 'group-hover:bg-red-600/30', hoverBorder: 'group-hover:border-red-600/60', glow: 'group-hover:shadow-[0_0_15px_rgba(220,38,38,0.4)]' },
+  'x-community': { icon: FaUsers, color: 'text-white', bg: 'bg-red-600/10', border: 'border-red-600/20', hoverBg: 'group-hover:bg-red-600/30', hoverBorder: 'group-hover:border-red-600/60', glow: 'group-hover:shadow-[0_0_15px_rgba(220,38,38,0.4)]' },
 };
 
 export const SocialButton: React.FC<SocialButtonProps> = ({ platform, url, className }) => {
