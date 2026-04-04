@@ -13,16 +13,15 @@ export const Hero: React.FC = () => {
       <div className="relative z-10 flex flex-col items-center w-full max-w-5xl mx-auto">
         {/* Logo with Glow */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ 
-            duration: 1.2, 
-            ease: [0.34, 1.56, 0.64, 1],
-            delay: 0.1
+            duration: 0.8, 
+            ease: [0.22, 1, 0.36, 1],
           }}
           className="mb-10 relative group"
         >
-          <div className="absolute inset-0 bg-red-600/20 blur-3xl rounded-full group-hover:bg-red-600/40 transition-all duration-700 animate-pulse" />
+          <div className="absolute inset-0 bg-red-600/20 blur-3xl rounded-full" />
           <img 
             src="https://i.postimg.cc/Wpddwqtx/IMG-9085.jpg" 
             alt="POWR Logo" 
@@ -32,27 +31,21 @@ export const Hero: React.FC = () => {
         </motion.div>
 
         <motion.h1 
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-4 font-display flex flex-col items-center gap-y-1"
         >
           <span className="text-white">WE ARE</span>
-          <motion.span 
-            initial={{ scale: 0.9 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
-            className="text-red-600 text-glow" 
-            dir="ltr"
-          >
+          <span className="text-red-600 text-glow" dir="ltr">
             #POWR
-          </motion.span>
+          </span>
         </motion.h1>
         
         <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
           className="text-base md:text-xl text-red-100/60 max-w-xl mx-auto font-bold leading-relaxed tracking-wide"
         >
           المنظمة الرائدة في صناعة المحتوى والرياضات الإلكترونية
@@ -60,9 +53,9 @@ export const Hero: React.FC = () => {
         
         {/* Scroll Indicator */}
         <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 1, repeat: Infinity, repeatType: "reverse" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
           className="absolute bottom-[-100px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
           <span className="text-red-500/40 text-[10px] uppercase tracking-[0.3em] font-bold">Scroll</span>

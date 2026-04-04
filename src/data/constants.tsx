@@ -12,7 +12,7 @@ export const CLAN_DETAILS: ClanDetails = {
   description: 'باور هو الكلان الرائد في الشرق الأوسط، يجمع نخبة صناع المحتوى واللاعبين المحترفين تحت سقف واحد. نحن لا نصنع المحتوى فحسب، بل نصنع التاريخ ونلهم جيلاً جديداً من المبدعين في عالم الرياضات الإلكترونية.',
   logoInitials: 'POWR',
   stats: [
-    { label: 'سنة التأسيس', value: '2018' },
+    { label: 'سنة التأسيس', value: '2010' },
     { label: 'مجموع المتابعين', value: '+100M' },
     { label: 'بطولات', value: '+50' },
     { label: 'صناع محتوى', value: '+25' }
@@ -51,7 +51,111 @@ export const FOUNDERS: Member[] = [
   }
 ];
 
-export const CREATORS: Member[] = [];
+export const CREATORS: Member[] = [
+  {
+    id: 'shong',
+    name: 'SHONGXBONG',
+    initials: 'SX',
+    avatarUrl: 'https://i.postimg.cc/Gtv8VMrb/IMG_9133.jpg',
+    role: 'صانع محتوى',
+    tags: ['Gaming', 'Vlogs', 'Entertainment'],
+    socials: createSocials('shongxbong'),
+    bio: 'أحد أشهر صناع المحتوى في العالم العربي، يتميز بأسلوبه الفكاهي وتحدياته المبتكرة.',
+    stats: [
+      { label: 'مشتركين', value: '10M+' },
+      { label: 'مشاهدات', value: '1B+' }
+    ]
+  },
+  {
+    id: 'mody',
+    name: 'MODY',
+    initials: 'MD',
+    avatarUrl: 'https://i.postimg.cc/0j7MFtxM/IMG_9135.jpg',
+    role: 'صانع محتوى',
+    tags: ['Gaming', 'Challenges'],
+    socials: createSocials('mody'),
+    bio: 'مبدع في عالم الألعاب والتحديات، يقدم محتوى ترفيهي عالي الجودة لملايين المتابعين.',
+    stats: [
+      { label: 'مشتركين', value: '5M+' },
+      { label: 'مشاهدات', value: '500M+' }
+    ]
+  },
+  {
+    id: 'razan',
+    name: 'RAZAN',
+    initials: 'RZ',
+    avatarUrl: 'https://i.postimg.cc/Gtv8VMrb/IMG_9133.jpg',
+    role: 'صانعة محتوى',
+    tags: ['Gaming', 'Lifestyle'],
+    socials: createSocials('razan'),
+    bio: 'صانعة محتوى متميزة في عائلة باور، تقدم محتوى متنوع يجمع بين الألعاب واللايف ستايل.',
+    stats: [
+      { label: 'مشتركين', value: '2M+' },
+      { label: 'مشاهدات', value: '200M+' }
+    ]
+  }
+];
+
+export const LIVE_STREAMS = [
+  {
+    id: '1',
+    channelName: 'POWR SHONG',
+    title: 'بث مباشر - فورتنايت مع الشباب 🔥',
+    thumbnail: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+    viewerCount: '12.5K',
+    platform: 'youtube',
+    avatar: 'https://i.postimg.cc/Gtv8VMrb/IMG_9133.jpg'
+  },
+  {
+    id: '2',
+    channelName: 'POWR MODY',
+    title: 'تحدي الضحك مع المتابعين 😂',
+    thumbnail: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+    viewerCount: '8.2K',
+    platform: 'twitch',
+    avatar: 'https://i.postimg.cc/0j7MFtxM/IMG_9135.jpg'
+  }
+];
+
+export const NEWS = [
+  {
+    id: '1',
+    title: 'انضمام عضو جديد لعائلة باور!',
+    date: '2024-03-15',
+    category: 'تحديثات الفريق',
+    image: 'https://i.postimg.cc/Wpddwqtx/IMG-9085.jpg',
+    excerpt: 'نرحب بالعضو الجديد الذي سينضم إلينا في رحلة الإبداع وصناعة المحتوى...'
+  },
+  {
+    id: '2',
+    title: 'الفوز ببطولة الشرق الأوسط للرياضات الإلكترونية',
+    date: '2024-03-10',
+    category: 'بطولات',
+    image: 'https://i.postimg.cc/Wpddwqtx/IMG-9085.jpg',
+    excerpt: 'حقق فريق باور للرياضات الإلكترونية المركز الأول في بطولة الشرق الأوسط...'
+  }
+];
+
+export const VIDEO_OF_THE_DAY = {
+  id: 'v1',
+  title: 'أقوى تحدي في تاريخ باور - من يربح الـ 100 ألف؟',
+  url: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
+  thumbnail: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+  views: 2500000,
+  likes: 150000,
+  channelName: 'POWR eSports',
+  channelAvatar: 'https://i.postimg.cc/Wpddwqtx/IMG-9085.jpg'
+};
+
+export const STREAM_SCHEDULE = [
+  { day: 'الأحد', time: '9:00 PM', member: 'SHONGXBONG', platform: 'YouTube' },
+  { day: 'الاثنين', time: '10:00 PM', member: 'MODY', platform: 'Twitch' },
+  { day: 'الثلاثاء', time: '8:30 PM', member: 'RAZAN', platform: 'YouTube' },
+  { day: 'الأربعاء', time: '9:00 PM', member: 'POWR JASER', platform: 'YouTube' },
+  { day: 'الخميس', time: '11:00 PM', member: 'SHONGXBONG', platform: 'Twitch' },
+  { day: 'الجمعة', time: '10:00 PM', member: 'MODY', platform: 'YouTube' },
+  { day: 'السبت', time: '9:00 PM', member: 'RAZAN', platform: 'Twitch' }
+];
 
 export const SITE_FOUNDER: Member = {
   id: 'tu36y',
