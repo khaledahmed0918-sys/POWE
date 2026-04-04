@@ -84,7 +84,7 @@ const VideoCard: React.FC<{ video: VideoData; index: number }> = ({ video, index
   );
 };
 
-export const ContentCreators: React.FC = () => {
+export const ContentCreators: React.FC<{ limit?: number }> = ({ limit }) => {
   const [videos, setVideos] = useState<VideoData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -110,7 +110,7 @@ export const ContentCreators: React.FC = () => {
           }
         }, []);
 
-        setVideos(uniqueVideos);
+        setVideos(limit ? uniqueVideos.slice(0, limit) : uniqueVideos);
       } catch (err) {
         console.error('Error fetching videos:', err);
         setError('تعذر تحميل الفيديوهات حالياً');
@@ -120,7 +120,7 @@ export const ContentCreators: React.FC = () => {
     };
 
     fetchVideos();
-  }, []);
+  }, [limit]);
 
   return (
     <section className="py-24 relative overflow-hidden bg-black">

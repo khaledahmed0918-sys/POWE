@@ -25,14 +25,14 @@ function App() {
 
   const renderSection = () => {
     switch (activeSection) {
-      case 'home': return <Home />;
+      case 'home': return <Home setActiveSection={setActiveSection} />;
       case 'members': return <Members />;
       case 'videos': return <Videos />;
       case 'streams': return <Streams />;
       case 'stats': return <Stats />;
       case 'news': return <News />;
       case 'about': return <About />;
-      default: return <Home />;
+      default: return <Home setActiveSection={setActiveSection} />;
     }
   };
 
@@ -49,7 +49,7 @@ function App() {
           <img 
             src="https://i.postimg.cc/Wpddwqtx/IMG-9085.jpg" 
             alt="POWR Logo" 
-            className="w-32 h-auto relative z-10 drop-shadow-[0_0_30px_rgba(220,38,38,0.4)]"
+            className="w-32 h-auto relative z-10 drop-shadow-[0_0_30px_rgba(220,38,38,0.4)] mix-blend-screen"
             referrerPolicy="no-referrer"
           />
         </motion.div>

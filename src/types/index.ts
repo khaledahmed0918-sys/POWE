@@ -42,3 +42,38 @@ export interface VideoData {
   published: string;
 }
 
+export interface KickStream {
+  username: string;
+  avatar: string | null;
+  banner: string | null;
+  bio: string;
+  followers: number;
+  live: boolean;
+  viewers: number;
+  title: string;
+  thumbnail: { url: string } | null;
+  last_stream_date: string | null;
+  socials: {
+    twitter: string | null;
+    instagram: string | null;
+    youtube: string | null;
+    discord: string | null;
+    tiktok: string | null;
+    facebook: string | null;
+  };
+}
+
+export interface TwitterData {
+  profile: {
+    avatar: string | null;
+    banner: string | null;
+  };
+  tweets: {
+    text: string;
+    date: string;
+    likes: number;
+    media: string[];
+  }[];
+  updatedAt: string;
+}
+

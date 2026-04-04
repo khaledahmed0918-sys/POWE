@@ -1,4 +1,5 @@
 import { Member, ClanDetails } from '../types';
+import { Twitter, Instagram, Mail, Globe } from 'lucide-react';
 
 const createSocials = (username: string) => [
   { platform: 'instagram' as const, url: `https://instagram.com/${username}` },
@@ -7,6 +8,8 @@ const createSocials = (username: string) => [
   { platform: 'snapchat' as const, url: `https://snapchat.com/add/${username}` },
 ];
 
+export const API_BASE_URL = 'https://dolabriform-fascinatedly-lecia.ngrok-free.dev';
+
 export const CLAN_DETAILS: ClanDetails = {
   name: 'POWR eSports',
   description: 'باور هو الكلان الرائد في الشرق الأوسط، يجمع نخبة صناع المحتوى واللاعبين المحترفين تحت سقف واحد. نحن لا نصنع المحتوى فحسب، بل نصنع التاريخ ونلهم جيلاً جديداً من المبدعين في عالم الرياضات الإلكترونية.',
@@ -14,7 +17,7 @@ export const CLAN_DETAILS: ClanDetails = {
   stats: [
     { label: 'سنة التأسيس', value: '2010' },
     { label: 'مجموع المتابعين', value: '+100M' },
-    { label: 'بطولات', value: '+50' },
+    { label: 'بطولات', value: '+160' },
     { label: 'صناع محتوى', value: '+25' }
   ]
 };
@@ -185,8 +188,8 @@ export const DEVELOPER: Member = {
 };
 
 export const POWR_SOCIALS = [
-  { platform: 'twitter' as const, url: 'https://x.com/powresports?s=21' },
-  { platform: 'x-community' as const, url: 'https://x.com/i/communities/1541356808069152775' },
-  { platform: 'instagram' as const, url: 'https://www.instagram.com/poweresports?igsh=cjhvdmh4bDkwZDQ=' },
-  { platform: 'email' as const, url: 'mailto:info@powr.sa' },
+  { platform: 'twitter' as const, url: 'https://x.com/powresports?s=21', icon: Twitter },
+  { platform: 'x-community' as const, url: 'https://x.com/i/communities/1541356808069152775', icon: Globe },
+  { platform: 'instagram' as const, url: 'https://www.instagram.com/poweresports?igsh=cjhvdmh4bDkwZDQ=', icon: Instagram },
+  { platform: 'email' as const, url: 'mailto:info@powr.sa', icon: Mail },
 ];

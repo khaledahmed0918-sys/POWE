@@ -20,7 +20,7 @@ export const About: React.FC = () => {
               <img 
                 src="https://i.postimg.cc/Wpddwqtx/IMG-9085.jpg" 
                 alt="POWR Logo" 
-                className="w-full max-w-md mx-auto h-auto object-contain relative z-10 drop-shadow-[0_0_50px_rgba(220,38,38,0.5)]"
+                className="w-full max-w-md mx-auto h-auto object-contain relative z-10 drop-shadow-[0_0_50px_rgba(220,38,38,0.5)] mix-blend-screen"
                 referrerPolicy="no-referrer"
               />
             </div>
@@ -72,7 +72,7 @@ export const About: React.FC = () => {
                 كن جزءاً من عائلتنا وتابعنا على جميع منصات التواصل الاجتماعي ليصلك كل جديد وحصري من عالم باور.
               </p>
               <div className="flex flex-wrap justify-center gap-6 md:gap-10">
-                {POWR_SOCIALS.map((social) => (
+                {POWR_SOCIALS.map((social: any) => (
                   <a 
                     key={social.platform} 
                     href={social.url} 
@@ -80,7 +80,7 @@ export const About: React.FC = () => {
                     rel="noopener noreferrer"
                     className="w-16 h-16 md:w-20 md:h-20 bg-red-600/10 rounded-3xl flex items-center justify-center border border-red-600/20 hover:bg-red-600 hover:scale-110 transition-all group"
                   >
-                    <Globe size={32} className="text-red-600 group-hover:text-white transition-colors" />
+                    <social.icon size={32} className="text-red-600 group-hover:text-white transition-colors" />
                   </a>
                 ))}
               </div>
