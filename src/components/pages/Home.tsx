@@ -4,15 +4,16 @@ import { SectionTitle } from '../ui/SectionTitle';
 import { GlassCard } from '../ui/GlassCard';
 import { CLAN_DETAILS } from '../../data/constants';
 import { motion } from 'motion/react';
-import { Radio, Play, Star, BarChart2, Eye, Heart, Users, TrendingUp, ArrowLeft } from 'lucide-react';
+import { Radio, Play, Star, Eye, Heart, Users, TrendingUp, ArrowLeft, MessageSquare, Share2, Twitter } from 'lucide-react';
 import { ContentCreators } from '../sections/ContentCreators';
-import { useLiveStreams, useLastVideos } from '../../utils/useApi';
+import { useLiveStreams, useLastVideos, useTwitterData } from '../../utils/useApi';
 import { KickStream } from '../../types';
 
 export const Home: React.FC<{ setActiveSection: (section: string) => void }> = ({ setActiveSection }) => {
   const { sortedLiveStreams, loading: streamsLoading } = useLiveStreams();
   const streams = sortedLiveStreams as KickStream[];
   const { data: lastVideos, loading: videosLoading } = useLastVideos();
+  const { data: twitterData, loading: twitterLoading } = useTwitterData();
 
   // Logic for Video of the Day
   const getVideoOfTheDay = () => {
@@ -40,9 +41,64 @@ export const Home: React.FC<{ setActiveSection: (section: string) => void }> = (
   const trendVideo = lastVideos.find(v => v.channelId === 'UCm6dEXyAMIy0njEOW-suLww');
 
   const topStreams = streams.slice(0, 2);
+  const latestTweet = twitterData?.tweets[0];
 
   return (
-    <div className="space-y-24">
+    <div className="space-y-32 pb-32">
+      {/* Hero Section - Clan Philosophy */}
+      <section className="relative pt-20 overflow-hidden">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-[1px] w-12 bg-red-600" />
+                <span className="text-red-600 font-black tracking-[0.3em] uppercase text-sm">نحن نصنع التاريخ</span>
+              </div>
+              <h1 className="text-5xl md:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tighter">
+                أكبر منظمة <br />
+                <span className="text-red-600">للرياضات الإلكترونية</span> <br />
+                في الشرق الأوسط
+              </h1>
+              <p className="text-red-100/60 text-lg md:text-xl leading-relaxed mb-10 max-w-xl font-medium">
+                {CLAN_DETAILS.description}
+              </p>
+              <div className="flex flex-wrap gap-6">
+                <button 
+                  onClick={() => setActiveSection('about')}
+                  className="px-10 py-4 bg-red-600 text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-red-700 transition-all shadow-xl shadow-red-600/20 active:scale-95"
+                >
+                  اكتشف المزيد
+                </button>
+                <button 
+                  onClick={() => setActiveSection('members')}
+                  className="px-10 py-4 bg-white/5 border border-white/10 text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/10 transition-all active:scale-95"
+                >
+                  فريقنا
+                </button>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="relative"
+            >
+              <div className="absolute inset-0 bg-red-600 blur-[120px] opacity-20 rounded-full animate-pulse" />
+              <img 
+                src="https://i.postimg.cc/Wpddwqtx/IMG-9085.jpg" 
+                alt="POWR Logo" 
+                className="w-full max-w-lg mx-auto relative z-10 drop-shadow-[0_0_50px_rgba(220,38,38,0.3)] mix-blend-screen"
+                referrerPolicy="no-referrer"
+              />
+            </motion.div>
+          </div>
+        </Container>
+      </section>
       {/* Live Now Section */}
       {!streamsLoading && topStreams.length > 0 && (
         <section>
@@ -148,22 +204,53 @@ export const Home: React.FC<{ setActiveSection: (section: string) => void }> = (
         </section>
       )}
 
-      {/* Quick Stats */}
-      <section>
-        <Container>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {CLAN_DETAILS.stats.map((stat, idx) => (
-              <GlassCard key={idx} className="p-8 text-center group">
-                <div className="w-12 h-12 bg-red-600/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-red-600/20 transition-colors">
-                  <BarChart2 size={24} className="text-red-600" />
+      {/* Latest News Teaser */}
+      {!twitterLoading && latestTweet && (
+        <section>
+          <Container>
+            <div className="flex items-center justify-between mb-10">
+              <h2 className="text-3xl font-black text-white tracking-tighter uppercase flex items-center gap-3">
+                <Twitter size={24} className="text-[#1DA1F2]" />
+                آخر الأخبار
+              </h2>
+              <button 
+                onClick={() => setActiveSection('news')}
+                className="text-red-500 font-black text-xs uppercase tracking-widest hover:text-white transition-colors flex items-center gap-2"
+              >
+                جميع الأخبار <ArrowLeft size={16} />
+              </button>
+            </div>
+            
+            <GlassCard className="p-8 md:p-12 border-white/5 hover:border-red-600/20 transition-all duration-500 group relative overflow-hidden">
+              <div className="absolute -top-24 -left-24 w-64 h-64 bg-red-600/5 blur-[100px] rounded-full pointer-events-none" />
+              <div className="flex flex-col md:flex-row gap-10 items-start">
+                <div className="flex-grow">
+                  <div className="flex items-center gap-4 mb-8">
+                    <img src={twitterData?.profile?.avatar} alt="POWR" className="w-14 h-14 rounded-full border-2 border-red-600/20" referrerPolicy="no-referrer" />
+                    <div>
+                      <span className="block text-white font-black text-xl tracking-tight">باور eSports</span>
+                      <span className="text-red-500 font-bold text-sm">@POWReSports</span>
+                    </div>
+                  </div>
+                  <p className="text-white/90 text-2xl leading-relaxed mb-10 font-medium tracking-tight" dir="rtl">
+                    {latestTweet.text}
+                  </p>
+                  <div className="flex items-center gap-8 text-red-100/30 font-black text-xs uppercase tracking-widest">
+                    <span className="flex items-center gap-2"><Heart size={16} className="text-red-600" /> {latestTweet.likes.toLocaleString()}</span>
+                    <span className="flex items-center gap-2"><MessageSquare size={16} className="text-red-600" /> تفاعل</span>
+                    <span className="flex items-center gap-2"><Share2 size={16} className="text-red-600" /> {latestTweet.date}</span>
+                  </div>
                 </div>
-                <span className="block text-3xl md:text-4xl font-black text-white mb-1 font-display">{stat.value}</span>
-                <span className="text-red-100/40 text-[10px] font-black uppercase tracking-[0.2em]">{stat.label}</span>
-              </GlassCard>
-            ))}
-          </div>
-        </Container>
-      </section>
+                {latestTweet.media.length > 0 && (
+                  <div className="w-full md:w-[400px] rounded-3xl overflow-hidden border border-white/10 aspect-video shadow-2xl">
+                    <img src={latestTweet.media[0]} alt="" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                  </div>
+                )}
+              </div>
+            </GlassCard>
+          </Container>
+        </section>
+      )}
 
       {/* Latest Videos Section */}
       <section>
@@ -226,6 +313,29 @@ export const Home: React.FC<{ setActiveSection: (section: string) => void }> = (
           </Container>
         </section>
       )}
+      {/* Community Section */}
+      <section>
+        <Container>
+          <GlassCard className="p-12 md:p-20 text-center relative overflow-hidden border-white/5">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-red-600/5 to-transparent pointer-events-none" />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl md:text-6xl font-black text-white mb-8 tracking-tighter">انضم إلى مجتمع باور</h2>
+              <p className="text-red-100/60 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
+                كن جزءاً من أكبر تجمع لمحبي الرياضات الإلكترونية وصناع المحتوى في العالم العربي. تابعنا وشاركنا شغفك!
+              </p>
+              <div className="flex flex-wrap justify-center gap-6">
+                <a href="https://x.com/powresports" target="_blank" rel="noopener noreferrer" className="px-10 py-4 bg-[#1DA1F2] text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all shadow-lg shadow-[#1DA1F2]/20 active:scale-95">تويتر</a>
+                <a href="https://instagram.com/poweresports" target="_blank" rel="noopener noreferrer" className="px-10 py-4 bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all shadow-lg shadow-red-600/20 active:scale-95">انستقرام</a>
+                <a href="https://youtube.com/@powresports" target="_blank" rel="noopener noreferrer" className="px-10 py-4 bg-red-600 text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all shadow-lg shadow-red-600/20 active:scale-95">يوتيوب</a>
+              </div>
+            </motion.div>
+          </GlassCard>
+        </Container>
+      </section>
     </div>
   );
 };

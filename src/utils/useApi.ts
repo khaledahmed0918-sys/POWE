@@ -8,7 +8,11 @@ export function useLastVideos() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/last`)
+    fetch(`${API_BASE_URL}/last`, {
+      headers: {
+        'ngrok-skip-browser-warning': 'true'
+      }
+    })
       .then(res => res.json())
       .then(setData)
       .catch(err => setError(err.message))
@@ -24,17 +28,26 @@ export function useLiveStreams() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/liveD`)
+    fetch(`${API_BASE_URL}/liveD`, {
+      headers: {
+        'ngrok-skip-browser-warning': 'true'
+      }
+    })
       .then(res => res.json())
       .then(setData)
       .catch(err => setError(err.message))
       .finally(() => setLoading(false));
   }, []);
 
-  const liveStreams = Object.values(data).filter((stream: KickStream) => stream.live);
-  const sortedLiveStreams = [...liveStreams].sort((a: KickStream, b: KickStream) => b.viewers - a.viewers);
+  const allStreams = Object.values(data);
+  const sortedAllStreams = [...allStreams].sort((a: KickStream, b: KickStream) => {
+    if (a.live && !b.live) return -1;
+    if (!a.live && b.live) return 1;
+    if (a.live && b.live) return b.viewers - a.viewers;
+    return 0;
+  });
 
-  return { data, sortedLiveStreams, loading, error };
+  return { data, sortedLiveStreams: sortedAllStreams, loading, error };
 }
 
 export function useTwitterData() {
@@ -43,7 +56,11 @@ export function useTwitterData() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/powr`)
+    fetch(`${API_BASE_URL}/powr`, {
+      headers: {
+        'ngrok-skip-browser-warning': 'true'
+      }
+    })
       .then(res => res.json())
       .then(setData)
       .catch(err => setError(err.message))

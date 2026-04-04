@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Home, Users, Play, Radio, BarChart2, Newspaper, Info } from 'lucide-react';
+import { Home, Users, Play, Radio, Newspaper, Info } from 'lucide-react';
 import { cn } from '../../utils/cn';
 
 interface NavItemProps {
@@ -65,7 +65,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection 
     { id: 'members', icon: Users, label: 'الأعضاء' },
     { id: 'videos', icon: Play, label: 'المقاطع' },
     { id: 'streams', icon: Radio, label: 'البثوث' },
-    { id: 'stats', icon: BarChart2, label: 'الإحصائيات' },
     { id: 'news', icon: Newspaper, label: 'الأخبار' },
     { id: 'about', icon: Info, label: 'عن باور' },
   ];

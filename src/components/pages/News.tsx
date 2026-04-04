@@ -23,14 +23,12 @@ export const News: React.FC = () => {
 
   if (loading) {
     return (
-      <Container>
-        <SectionTitle title="أخبار باور" subtitle="جاري تحميل آخر التحديثات..." />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {[1, 2, 3, 4].map(i => (
-            <div key={i} className="h-64 bg-white/5 animate-pulse rounded-3xl border border-white/5" />
-          ))}
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="flex flex-col items-center gap-6">
+          <div className="w-16 h-16 border-4 border-red-600 border-t-transparent rounded-full animate-spin" />
+          <p className="text-red-500 font-black tracking-widest uppercase text-sm animate-pulse">جاري تحميل آخر الأخبار...</p>
         </div>
-      </Container>
+      </div>
     );
   }
 
@@ -39,88 +37,125 @@ export const News: React.FC = () => {
 
   return (
     <div className="pb-24">
-      {/* Profile Header */}
-      <div className="relative w-full h-[300px] md:h-[400px] overflow-hidden mb-24">
-        <img src={banner} alt="Banner" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+      {/* Profile Header - Enhanced */}
+      <div className="relative w-full h-[350px] md:h-[500px] overflow-hidden">
+        <img 
+          src={banner} 
+          alt="Banner" 
+          className="w-full h-full object-cover scale-105 blur-[2px] opacity-50" 
+          referrerPolicy="no-referrer" 
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-black" />
         
-        <Container className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-10">
-          <div className="flex flex-col items-center">
+        <Container className="absolute inset-0 flex flex-col items-center justify-center z-10">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="flex flex-col items-center"
+          >
             <div className="relative group">
-              <div className="absolute inset-0 bg-red-600 blur-2xl opacity-40 group-hover:opacity-60 transition-opacity rounded-full" />
-              <img 
-                src={avatar} 
-                alt="POWR Avatar" 
-                className="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-black relative z-10 object-cover" 
-                referrerPolicy="no-referrer"
-              />
+              <div className="absolute inset-0 bg-red-600 blur-3xl opacity-40 group-hover:opacity-60 transition-opacity rounded-full animate-pulse" />
+              <div className="p-1 rounded-full bg-gradient-to-tr from-red-600 to-red-900 relative z-10">
+                <img 
+                  src={avatar} 
+                  alt="POWR Avatar" 
+                  className="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-black object-cover shadow-2xl" 
+                  referrerPolicy="no-referrer"
+                />
+              </div>
             </div>
-            <div className="text-center mt-6">
-              <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase font-display">POWR eSports</h1>
-              <p className="text-red-500 font-bold tracking-widest uppercase text-xs mt-2">@POWReSports</p>
+            <div className="text-center mt-8">
+              <h1 className="text-4xl md:text-7xl font-black text-white tracking-tighter uppercase font-display drop-shadow-2xl">POWR eSports</h1>
+              <div className="flex items-center justify-center gap-3 mt-4">
+                <div className="h-[1px] w-8 bg-red-600/50" />
+                <p className="text-red-500 font-black tracking-[0.3em] uppercase text-sm">@POWReSports</p>
+                <div className="h-[1px] w-8 bg-red-600/50" />
+              </div>
             </div>
-          </div>
+          </motion.div>
         </Container>
       </div>
 
-      <Container className="mt-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <Container className="mt-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {data?.tweets.map((tweet, idx) => {
             const links = extractLinks(tweet.text);
             const webLinks = links.filter(link => !isImageUrl(link) && !isVideoUrl(link));
             
             return (
-              <GlassCard key={idx} className="p-8 flex flex-col border-red-600/10 hover:border-red-600/30 transition-all group">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-3">
-                    <img src={avatar} alt="" className="w-10 h-10 rounded-full border border-red-600/20" referrerPolicy="no-referrer" />
-                    <div>
-                      <span className="block text-white font-bold text-sm">باور</span>
-                      <span className="text-red-100/20 text-[10px] font-black uppercase tracking-widest">{tweet.date}</span>
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+              >
+                <GlassCard className="p-8 h-full flex flex-col border-white/5 hover:border-red-600/20 transition-all duration-500 group relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-red-600/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+                  
+                  <div className="flex items-center justify-between mb-8">
+                    <div className="flex items-center gap-4">
+                      <div className="p-0.5 rounded-full bg-red-600/20">
+                        <img src={avatar} alt="" className="w-12 h-12 rounded-full border border-black object-cover" referrerPolicy="no-referrer" />
+                      </div>
+                      <div>
+                        <span className="block text-white font-black text-base tracking-tight">باور</span>
+                        <div className="flex items-center gap-2 text-red-100/30 text-[10px] font-bold uppercase tracking-widest">
+                          <Calendar size={12} />
+                          {tweet.date}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="px-3 py-1.5 bg-red-600/10 rounded-full flex items-center gap-2 text-red-500 text-xs font-black border border-red-600/20">
+                      <Heart size={14} className="fill-current" />
+                      {tweet.likes > 0 ? tweet.likes.toLocaleString() : '0'}
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-red-500/60 text-xs font-bold">
-                    <Heart size={14} className="fill-current" />
-                    {tweet.likes > 0 ? tweet.likes : ''}
-                  </div>
-                </div>
 
-                <p className="text-white text-lg leading-relaxed mb-8 font-medium whitespace-pre-wrap" dir="rtl">
-                  {tweet.text}
-                </p>
+                  <p className="text-white/90 text-xl leading-relaxed mb-8 font-medium whitespace-pre-wrap tracking-tight" dir="rtl">
+                    {tweet.text}
+                  </p>
 
-                {/* Media Gallery */}
-                {tweet.media.length > 0 && (
-                  <div className={`grid gap-2 mb-8 ${tweet.media.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}>
-                    {tweet.media.map((m, i) => (
-                      <div key={i} className="rounded-2xl overflow-hidden border border-white/5 aspect-square md:aspect-video">
-                        <img src={m} alt="" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
-                      </div>
-                    ))}
-                  </div>
-                )}
+                  {/* Media Gallery - Improved */}
+                  {tweet.media.length > 0 && (
+                    <div className={`grid gap-4 mb-8 ${tweet.media.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                      {tweet.media.map((m, i) => (
+                        <div key={i} className="rounded-3xl overflow-hidden border border-white/5 aspect-video bg-black/20 group/media">
+                          <img 
+                            src={m} 
+                            alt="" 
+                            className="w-full h-full object-contain group-hover/media:scale-105 transition-transform duration-700" 
+                            referrerPolicy="no-referrer" 
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
 
-                {/* Webview Buttons */}
-                <div className="mt-auto flex flex-wrap gap-4">
-                  {webLinks.map((link, i) => (
-                    <button 
-                      key={i}
-                      onClick={() => setWebviewUrl(link)}
-                      className="flex items-center gap-2 px-4 py-2 bg-red-600/10 border border-red-600/20 text-red-500 rounded-xl text-xs font-black hover:bg-red-600 hover:text-white transition-all"
+                  {/* Webview Buttons */}
+                  <div className="mt-auto pt-6 border-t border-white/5 flex flex-wrap items-center justify-between gap-4">
+                    <div className="flex flex-wrap gap-3">
+                      {webLinks.map((link, i) => (
+                        <button 
+                          key={i}
+                          onClick={() => setWebviewUrl(link)}
+                          className="flex items-center gap-2 px-5 py-2.5 bg-red-600 text-white rounded-xl text-xs font-black hover:bg-red-700 shadow-lg shadow-red-600/20 transition-all active:scale-95"
+                        >
+                          <Globe size={14} /> عرض الرابط
+                        </button>
+                      ))}
+                    </div>
+                    <a 
+                      href="https://twitter.com/powresports" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-red-100/20 hover:text-red-600 transition-colors text-xs font-black uppercase tracking-widest"
                     >
-                      <Globe size={14} /> عرض Webview
-                    </button>
-                  ))}
-                  <a 
-                    href="https://twitter.com/powresports" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-red-100/20 hover:text-red-600 transition-colors text-xs font-bold"
-                  >
-                    عرض على X <ExternalLink size={14} />
-                  </a>
-                </div>
-              </GlassCard>
+                      عرض على X <ExternalLink size={14} />
+                    </a>
+                  </div>
+                </GlassCard>
+              </motion.div>
             );
           })}
         </div>

@@ -5,7 +5,6 @@ import { Home } from './components/pages/Home';
 import { Members } from './components/pages/Members';
 import { Videos } from './components/pages/Videos';
 import { Streams } from './components/pages/Streams';
-import { Stats } from './components/pages/Stats';
 import { News } from './components/pages/News';
 import { About } from './components/pages/About';
 import { AnimatePresence, motion } from 'motion/react';
@@ -29,7 +28,6 @@ function App() {
       case 'members': return <Members />;
       case 'videos': return <Videos />;
       case 'streams': return <Streams />;
-      case 'stats': return <Stats />;
       case 'news': return <News />;
       case 'about': return <About />;
       default: return <Home setActiveSection={setActiveSection} />;
@@ -74,11 +72,20 @@ function App() {
       </AnimatePresence>
 
       {/* Global Background Elements */}
-      <div className="fixed inset-0 pointer-events-none z-[-1]">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl">
-          <div className="absolute top-[-10%] left-[10%] w-[40%] h-[40%] bg-red-600/5 rounded-full blur-[120px]" />
-          <div className="absolute bottom-[10%] right-[10%] w-[30%] h-[30%] bg-red-900/5 rounded-full blur-[100px]" />
-        </div>
+      <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+        {/* Glassy Crystalline Base */}
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-[50px]" />
+        
+        {/* Vibrant Color Spots */}
+        <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-red-600/20 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-5%] w-[50%] h-[50%] bg-red-900/30 rounded-full blur-[100px]" />
+        <div className="absolute top-[30%] right-[10%] w-[30%] h-[30%] bg-red-500/10 rounded-full blur-[80px]" />
+        
+        {/* Shimmer / Noise Effect */}
+        <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
+        
+        {/* Glass Reflection */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
       </div>
     </div>
   );
