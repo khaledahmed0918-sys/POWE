@@ -40,7 +40,7 @@ export const Home: React.FC<{ setActiveSection: (section: string) => void }> = (
   // Logic for Trend Power (Channel UCm6dEXyAMIy0njEOW-suLww)
   const trendVideo = lastVideos.find(v => v.channelId === 'UCm6dEXyAMIy0njEOW-suLww');
 
-  const topStreams = streams.slice(0, 2);
+  const topStreams = streams.slice(0, 1);
   const latestTweet = twitterData?.tweets[0];
 
   return (
@@ -111,7 +111,7 @@ export const Home: React.FC<{ setActiveSection: (section: string) => void }> = (
               </h2>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6">
               {topStreams.map((stream) => (
                 <GlassCard key={stream.username} className="p-4 flex flex-col md:flex-row gap-6 items-center">
                   <div className="relative aspect-video w-full md:w-48 rounded-xl overflow-hidden flex-shrink-0">
@@ -313,29 +313,6 @@ export const Home: React.FC<{ setActiveSection: (section: string) => void }> = (
           </Container>
         </section>
       )}
-      {/* Community Section */}
-      <section>
-        <Container>
-          <GlassCard className="p-12 md:p-20 text-center relative overflow-hidden border-white/5">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-red-600/5 to-transparent pointer-events-none" />
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl md:text-6xl font-black text-white mb-8 tracking-tighter">انضم إلى مجتمع باور</h2>
-              <p className="text-red-100/60 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
-                كن جزءاً من أكبر تجمع لمحبي الرياضات الإلكترونية وصناع المحتوى في العالم العربي. تابعنا وشاركنا شغفك!
-              </p>
-              <div className="flex flex-wrap justify-center gap-6">
-                <a href="https://x.com/powresports" target="_blank" rel="noopener noreferrer" className="px-10 py-4 bg-[#1DA1F2] text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all shadow-lg shadow-[#1DA1F2]/20 active:scale-95">تويتر</a>
-                <a href="https://instagram.com/poweresports" target="_blank" rel="noopener noreferrer" className="px-10 py-4 bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all shadow-lg shadow-red-600/20 active:scale-95">انستقرام</a>
-                <a href="https://youtube.com/@powresports" target="_blank" rel="noopener noreferrer" className="px-10 py-4 bg-red-600 text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all shadow-lg shadow-red-600/20 active:scale-95">يوتيوب</a>
-              </div>
-            </motion.div>
-          </GlassCard>
-        </Container>
-      </section>
     </div>
   );
 };

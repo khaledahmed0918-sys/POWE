@@ -45,7 +45,7 @@ export const News: React.FC = () => {
           className="w-full h-full object-cover scale-105 blur-[2px] opacity-50" 
           referrerPolicy="no-referrer" 
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-black" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
         
         <Container className="absolute inset-0 flex flex-col items-center justify-center z-10">
           <motion.div 

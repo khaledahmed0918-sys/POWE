@@ -2,7 +2,8 @@ import React from 'react';
 import { Container } from '../ui/Container';
 import { SectionTitle } from '../ui/SectionTitle';
 import { GlassCard } from '../ui/GlassCard';
-import { Radio, ExternalLink, Youtube, Twitch, Users, UserX } from 'lucide-react';
+import { Radio, ExternalLink, Users, UserX } from 'lucide-react';
+import { FaTwitter, FaInstagram, FaYoutube, FaDiscord, FaTiktok, FaFacebook } from 'react-icons/fa';
 import { useLiveStreams } from '../../utils/useApi';
 import { KickStream } from '../../types';
 
@@ -55,8 +56,45 @@ export const Streams: React.FC = () => {
                       </div>
                       <div className="min-w-0">
                         <h3 className="text-white font-bold text-lg mb-0.5 line-clamp-1 group-hover:text-red-500 transition-colors">{stream.title || 'بث مباشر'}</h3>
-                        <span className="text-red-500 font-black text-sm tracking-tight">{stream.username}</span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-red-500 font-black text-sm tracking-tight">{stream.username}</span>
+                          <span className="text-white/40 text-[10px] font-bold bg-white/5 px-2 py-0.5 rounded-full">{stream.followers.toLocaleString()} متابع</span>
+                        </div>
                       </div>
+                    </div>
+
+                    {/* Social Buttons */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {stream.socials.twitter && (
+                        <a href={stream.socials.twitter} target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white/5 hover:bg-[#1DA1F2] rounded-lg flex items-center justify-center text-white transition-all">
+                          <FaTwitter size={14} />
+                        </a>
+                      )}
+                      {stream.socials.instagram && (
+                        <a href={stream.socials.instagram} target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white/5 hover:bg-[#E1306C] rounded-lg flex items-center justify-center text-white transition-all">
+                          <FaInstagram size={14} />
+                        </a>
+                      )}
+                      {stream.socials.youtube && (
+                        <a href={stream.socials.youtube} target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white/5 hover:bg-[#FF0000] rounded-lg flex items-center justify-center text-white transition-all">
+                          <FaYoutube size={14} />
+                        </a>
+                      )}
+                      {stream.socials.discord && (
+                        <a href={stream.socials.discord} target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white/5 hover:bg-[#5865F2] rounded-lg flex items-center justify-center text-white transition-all">
+                          <FaDiscord size={14} />
+                        </a>
+                      )}
+                      {stream.socials.tiktok && (
+                        <a href={stream.socials.tiktok} target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white/5 hover:bg-black rounded-lg flex items-center justify-center text-white transition-all">
+                          <FaTiktok size={14} />
+                        </a>
+                      )}
+                      {stream.socials.facebook && (
+                        <a href={stream.socials.facebook} target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white/5 hover:bg-[#1877F2] rounded-lg flex items-center justify-center text-white transition-all">
+                          <FaFacebook size={14} />
+                        </a>
+                      )}
                     </div>
                     
                     <a 
